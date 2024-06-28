@@ -11,7 +11,8 @@
     .container {
   /* border: solid 1px red; */
   display: inline-flex;
-  width: 60em;
+  /* display: flex; */
+  width: 75em;
     }
     .logoContainer {
       border: solid 2px rgb(61, 126, 0);
@@ -25,7 +26,8 @@
     .logoContainer2 {
       border: solid 2px cyan;
       max-width: 11em;
-      max-height: 2em;;
+      max-height: 2em;
+      
       
     }
     
@@ -37,6 +39,7 @@
       text-decoration: none;
       justify-content: center;
       justify-self: center;
+      
       
       
     }
