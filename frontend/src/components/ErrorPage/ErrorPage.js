@@ -1,6 +1,5 @@
 import { Link, useRouteError } from "react-router-dom";
-
-// import Header from "../Header/Header";
+import Header from "../Header/Header";
 import styles from "../../App.module.css";
 
 
@@ -12,7 +11,7 @@ export default function ErrorPage() {
 
   return (
     <>
-      {/* {is404 ? <Header /> : null} */}
+      {is404 ? <Header /> : null}
       
       <main  className={styles.pagePadding}> 
         <h1 className={styles.h1}>{is404 ? "404 - Page Not Found" : "Service unavailable"}</h1>
