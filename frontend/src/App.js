@@ -28,7 +28,7 @@ export function App() {
     <div className="App">
       <Header />
       <main>
-        <LoginPage/> 
+        {/* <LoginPage/>  */}
         {/* LoginPage component to be removed when login functionality added */}
         <Outlet />
       </main>
