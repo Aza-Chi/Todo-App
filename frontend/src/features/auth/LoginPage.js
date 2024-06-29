@@ -1,15 +1,15 @@
 import { Form, redirect, useActionData, useRouteLoaderData, useSearchParams } from "react-router-dom";
-
 import InlineLink from "../../components/InlineLink/InlineLink";
 import globalStyles from "../../App.module.css";
 import GoogleAuthButton from "./GoogleAuthButton";
 
 export async function loginAction({ request }) {
+  console.log(`attempting login to ${process.env.REACT_APP_API_BASE_URL}/auth/login`);
   // https://reactrouter.com/en/main/start/tutorial#data-writes--html-forms
   // https://reactrouter.com/en/main/route/action
   let formData = await request.formData();
   try {
-    const username = formData.get("email_address");
+    const email = formData.get("email_address");
     const password = formData.get("password");
     const res = await fetch(
       `${process.env.REACT_APP_API_BASE_URL}/auth/login`,
@@ -17,11 +17,12 @@ export async function loginAction({ request }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ email, password })
       }
     );
 
     if (res.ok) {
+      console.log(`Login Successful:`);
       let redirectPath = new URL(request.url).searchParams.get("redirect");
       if (redirectPath) {
         if (redirectPath[0] !== "/") {
@@ -56,7 +57,8 @@ export function LoginPage() {
   const loggedOutContent = <>If you haven't created an account, please {registerLink} first or sign in with Google below.</>;
   const loggedInContent = <>You are already logged in as {authData.email_address}.</>;
   const googleError = <>Sign in with Google failed. Please try again later or {registerLink} instead.</>;
-
+console.log(`HELLO`);
+console.log(`attempting login to ${process.env.REACT_APP_API_BASE_URL}/auth/login`);
   return (
     <div className={`${globalStyles.pagePadding} ${globalStyles.mw80rem}`}>
       <h1 className={globalStyles.h1}>Log in</h1>
