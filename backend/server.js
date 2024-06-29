@@ -49,10 +49,13 @@ if (process.env.NODE_ENV === 'production') {
     cookie: { secure: false },
   }));
 }
+
+// console.log(process.env.SESSION_SECRET);
 //////////
 // Authenticate all routes and add user data to req.user
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
+// app.use(passport.session);
 passport.serializeUser(passportConfig.serialize);
 passport.deserializeUser(passportConfig.deserialize);
 
