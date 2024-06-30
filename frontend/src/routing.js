@@ -1,19 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
 import { App, authLoader } from "./App";
-import FallbackErrorPage from "./components/ErrorPage/ErrorPage";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 import { LoginPage, loginAction } from "./features/auth/LoginPage";
-// import {
-//   RegistrationPage,
-//   registerAction,
-// } from "./features/auth/RegistrationPage";
-// import AccountPage from "./components/AccountPage/AccountPage";
+import {
+  RegisterPage,
+  registerAction,
+} from "./features/auth/RegisterPage";
+import AccountPage from "./components/AccountPage/AccountPage";
 // import { TodoFeed, todoFeedLoader } from "./features/products/ProductFeed";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <FallbackErrorPage />,
+    errorElement: <ErrorPage />,
     loader: authLoader,
     id: "app",
     children: [
@@ -22,16 +22,16 @@ export const router = createBrowserRouter([
         element: <LoginPage />,
         action: loginAction,
       },
-    //   {
-    //     path: "register",
-    //     element: <RegistrationPage />,
-    //     action: registerAction,
-    //   },
-    //   {
-    //     path: "account",
-    //     element: <AccountPage />,
-    //     // loader: ,
-    //   },
+      {
+        path: "account",
+        element: <AccountPage />,
+        // loader: ,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+        action: registerAction,
+      },
     //   {
     //     path: "",
     //     element: <ListFeed />,
