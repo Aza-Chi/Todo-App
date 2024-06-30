@@ -14,7 +14,9 @@ function serialize(user, done) {
       return done(null, {
         id: user.id,
         email_address: user.email_address,
-        auth_method: user.auth_method
+        auth_method: user.auth_method,
+        username: user.username,
+        name: user.name,
       });
     });
   }
@@ -103,51 +105,6 @@ function parseUser(userString) {
 }
 */
 
-/*
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "usernameOrEmail",
-      passwordField: "password",
-    },
-    async (usernameOrEmail, password, done) => {
-      try {
-        console.log("passportConfig.js - attempting LocalStrategy");
-        let result = await pool.query(queries.checkUsernameExists, [
-          usernameOrEmail,
-        ]);
-        console.log(`result: ${result.rows}`);
-        let user = result.rows.length > 0 ? parseUser(result.rows[0].c) : null;
-        console.log(`user: ${user}`);
-        if (!user) {
-          console.log(`No user found, checking email`);
-          result = await pool.query(queries.checkEmailExists, [
-            usernameOrEmail,
-          ]);
-          user = result.rows.length > 0 ? parseUser(result.rows[0].c) : null;
-          console.log(JSON.stringify(user, null, 2));
-        }
-        
-
-        if (!user) {
-          return done(null, false, { message: "Invalid credentials" });
-        }
-
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
-          return done(null, false, { message: "Invalid credentials" });
-        }
-        console.log(`passportConfig.js - local strategy - password matches! `)
-        passport.serializeUser;
-        
-        return done(null, user);
-      } catch (err) {
-        return done(err);
-      }
-    }
-  )
-);
-*/
 
 passport.use(new LocalStrategy({
     usernameField: 'email', 
@@ -175,10 +132,12 @@ async function(email, password, done) {
 
         // Remove sensitive data from user object before passing it to 'done'
         const sanitizedUser = {
-            id: user.id,
+            id: user.user_id,
             email_address: user.email,
-            auth_method: 'local' // Assuming 'local' authentication method
-            // Add other necessary fields as per your schema
+            auth_method: 'local',
+            username: user.username, 
+            name: user.name,
+            // Add other necessary fields here for getStatus to receive
         };
 
         return done(null, sanitizedUser);
