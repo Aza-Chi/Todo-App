@@ -10,7 +10,8 @@ const passportConfig = require('./passportConfig.js');
 //Routers
 const usersRouter = require("./src/users/routes");
 const authRouter = require("./src/auth/routes");
-
+const todoListsRouter = require("./src/todolist/routes.js");
+const todosRouter = require("./src/todos/routes.js");
 //
 const app = express();
 const port = process.env.SERVER_PORT || 5000;
@@ -68,6 +69,8 @@ app.get('/', (req, res) => {
 
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
+app.use("/lists", todoListsRouter);
+app.use("/todos", todosRouter);
 
 app.get('/', (req, res) => {
   res.send('Hellooo World! I am the TODO Server!');
