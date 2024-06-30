@@ -52,11 +52,10 @@ export default function MainNav() {
         {renderNavItem("/category/misc", "Misc")} */}
       </ul>
       
-      {/* {authData.logged_in ?
+      {authData.logged_in ?
       <ul className={styles.navList}>
+        {renderNavItem("/lists", "ToDo")}
         {renderNavItem("/account", "Account")}
-        {renderNavItem("/addresses", "Addresses")}
-        {renderNavItem("/cart", "Cart")}
         {renderNavItem("#", "Log Out", handleClickLogOut)}
       </ul>
       :
@@ -64,7 +63,7 @@ export default function MainNav() {
         {renderNavItem("/login", "Log In")}
         {renderNavItem("/register", "Register")}
       </ul>
-      } */}
+      }
     </nav>
   );
 }
