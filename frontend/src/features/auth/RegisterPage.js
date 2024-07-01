@@ -88,8 +88,8 @@ export function RegisterPage() {
       case 0: return 'red';
       case 1: return 'red';
       case 2: return 'darkorange';
-      case 3: return 'blue';
-      case 4: return 'green';
+      case 3: return 'cyan';
+      case 4: return 'lime';
       default: return '';
     }
   };
