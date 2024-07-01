@@ -2,7 +2,7 @@
 body {    
   margin: 0 !important;
   padding: 0 !important;
-  background-color: rgb(247, 247, 247);
+  background-color: rgb(17, 17, 17);
   width: 100%; 
   overflow-x: hidden; /*Stop horizontal scroll */
   
@@ -18,6 +18,10 @@ https://stackoverflow.com/questions/51006397/cant-remove-margins-on-react-web-ap
 
 .pagePadding {
   padding: 0 12.5% 4em 15.5%;
+}
+
+.pagePadding p {
+  color: white;
 }
 
 @media screen and (max-width: 1400px) {
@@ -42,45 +46,54 @@ https://stackoverflow.com/questions/51006397/cant-remove-margins-on-react-web-ap
 
 .mb1rem {
   margin-bottom: 1rem;
+  
 }
 
 .mb2rem {
   margin-bottom: 2rem;
+  color: white;
 }
 
 .mb3rem {
   margin-bottom: 3rem;
+  color: white;
 }
 
 .mb4rem {
   margin-bottom: 4rem;
+
+  
 }
 
 .mw80rem {
   max-width: 80rem;
+  color: white;
 }
 
+.p {
+  color: white;
+}
 
 /* ===== Links and Buttons ===== */
 
 .link,
 .link:link {
-  color: rgb(0, 0, 0);
+  color: rgb(172, 97, 0);
   text-decoration: none;
 }
 
 .link:visited {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 123, 0);
 }
 
 .link:focus,
 .link:hover {
-  color: rgb(200, 80, 30);
+  color: rgb(255, 77, 0);
   text-decoration: underline;
 }
 
 .link:active {
-  color: rgb(180, 70, 25);
+  color: rgb(204, 75, 0);
   text-decoration: none;
 }
 
@@ -137,6 +150,7 @@ https://stackoverflow.com/questions/51006397/cant-remove-margins-on-react-web-ap
   margin-bottom: 0.4rem;
   margin-left: 0.15rem;
   font-weight: 700;
+  color: white;
 }
 
 .input {
@@ -151,6 +165,7 @@ https://stackoverflow.com/questions/51006397/cant-remove-margins-on-react-web-ap
 
 .h1 {
   margin-bottom: 0.8em;
+  color: white;
 }
 
 
@@ -198,7 +213,7 @@ https://stackoverflow.com/questions/51006397/cant-remove-margins-on-react-web-ap
   margin-top: 0.5rem;
   padding: 0.2rem;
   margin-bottom: 1em;
-  background: rgb(237, 237, 237);
+  background: rgb(51, 51, 51);
   border-radius: 5px;
   font-weight: bold;
   font-size: 1.2em;
