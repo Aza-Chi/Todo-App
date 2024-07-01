@@ -22,11 +22,11 @@ export default function AccountPage() {
     return (
       <div className={styles.pagePadding}>
         <h1 className={styles.h1}>Account information:</h1>
-        <p>Welcome {authData.name}.</p>
-        <p>You are logged in as {authData.username}/{authData.email_address}.</p>
+        <p className={styles.p}>Welcome {authData.name}.</p>
+        <p className={styles.p}>You are logged in as {authData.username}/{authData.email_address}.</p>
         
         <p className={styles.mb3rem}>
-          Change your account information below or <InlineLink path="/todo" anchor="view your todo list" />.
+          Change your account information below or <InlineLink path="/todo" anchor="view your todo list(s)" />.
         </p>
         
         {/* <h2>Friends:</h2> */}
