@@ -21,7 +21,7 @@ export default function ErrorPage() {
           <em>{error.statusText || error.message}</em>
         </p>
         <hr className={styles.separator}></hr>
-        <Link to="/" className={styles.button}>Back to Homepage</Link>
+        <Link to="/login" className={styles.button}>Back to Homepage</Link>
       </main>
     </>
   );
