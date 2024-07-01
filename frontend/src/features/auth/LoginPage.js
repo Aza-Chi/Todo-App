@@ -4,11 +4,11 @@ import globalStyles from "../../App.module.css";
 import GoogleAuthButton from "./GoogleAuthButton";
 
 export async function loginAction({ request }) {
-  console.log(`attempting login to ${process.env.REACT_APP_API_BASE_URL}/auth/login`);
   // https://reactrouter.com/en/main/start/tutorial#data-writes--html-forms
   // https://reactrouter.com/en/main/route/action
   let formData = await request.formData();
   try {
+    console.log(`attempting login to ${process.env.REACT_APP_API_BASE_URL}/auth/login`);
     const email = formData.get("email_address");
     const password = formData.get("password");
     const res = await fetch(
@@ -55,7 +55,8 @@ export function LoginPage() {
 
   const registerLink = <InlineLink path="/register" anchor="register" />;
   const loggedOutContent = <>If you haven't created an account, please {registerLink} first or sign in with Google below.</>;
-  const loggedInContent = <>You are already logged in as {authData.email_address}.</>;
+  // const loggedInContent = <>You are already logged in as {authData.email_address}.</>;
+  const loggedInContent = <>If you haven't created an account, please {registerLink} first or sign in with Google below.</>;
   const googleError = <>Sign in with Google failed. Please try again later or {registerLink} instead.</>;
 console.log(`HELLO`);
 console.log(`attempting login to ${process.env.REACT_APP_API_BASE_URL}/auth/login`);
