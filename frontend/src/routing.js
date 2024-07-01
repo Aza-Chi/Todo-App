@@ -2,12 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import { App, authLoader } from "./App";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import { LoginPage, loginAction } from "./features/auth/LoginPage";
-import {
-  RegisterPage,
-  registerAction,
-} from "./features/auth/RegisterPage";
+import { RegisterPage, registerAction } from "./features/auth/RegisterPage";
 import AccountPage from "./components/AccountPage/AccountPage";
-// import { TodoFeed, todoFeedLoader } from "./features/products/ProductFeed";
+import TodoListFeed from "./features/TodoLists/TodoListFeed"; 
+import { todoListFeedLoader } from "./features/TodoLists/TodoListFeed"; 
+import LogoutPage from "./features/auth/LogoutPage";
 
 export const router = createBrowserRouter([
   {
@@ -23,21 +22,23 @@ export const router = createBrowserRouter([
         action: loginAction,
       },
       {
-        path: "account",
-        element: <AccountPage />,
-        // loader: ,
-      },
-      {
         path: "register",
         element: <RegisterPage />,
         action: registerAction,
       },
-    //   {
-    //     path: "",
-    //     element: <ListFeed />,
-    //     loader: listFeedLoader,
-    //   },
-      
+      {
+        path: "account",
+        element: <AccountPage />,
+      },
+      {
+        path: '/todo',
+        element: <TodoListFeed />,
+        loader: todoListFeedLoader,
+      },
+      {
+        path: '/logout',
+        element: <LogoutPage />, 
+      },
     ],
   },
 ]);
