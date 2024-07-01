@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLoaderData } from "react-router-dom";
 import styles from "./TodoListFeed.module.css";
 import { getStatus } from '../auth/utils';
+import InlineLink from "../../components/InlineLink/InlineLink";
 
 export async function todoListFeedLoader() {
   const authData = await getStatus();
@@ -11,7 +12,8 @@ export async function todoListFeedLoader() {
   console.log(`TodoListFeed statusRes: ${authData.id}`);
   const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/lists/user/${authData.id}`);
   if (!response.ok) {
-    throw new Error('Failed to fetch todo lists');
+    console.log(`TodoListFeed.js - 'Failed to fetch todo lists`)
+    // throw new Error('Failed to fetch todo lists');
   }
   const todoListData = await response.json();
   return { todoListData, authData };
@@ -70,6 +72,7 @@ function TodoListFeed() {
   };
 
   function renderFeedItems() {
+
     if (loading) {
       return <p className={styles.loadingMessage}>Loading...</p>;
     }
@@ -99,7 +102,16 @@ function TodoListFeed() {
     );
   }
 
+  if (!authData || !authData.logged_in) {
+    return (
+      <div className={styles.loginMessage}>
+        <h3>Please <InlineLink path="/login" anchor="Log In" /> to use the Todo Lists App.</h3>    
+      </div>
+    );
+  }
+
   return (
+    
     <div className={styles.todoListFeed}>
       <h1>Todo Lists</h1>
       <button onClick={handleAddTodoList} className={styles.addButton}>Add Todo List</button>
