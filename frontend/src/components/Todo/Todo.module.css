@@ -1,0 +1,28 @@
+.todo {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    margin: 5px;
+
+    border-top: 1px solid #eee;
+    /* border-bottom: 1px solid #eee; */
+  }
+  
+  .todo span {
+    flex: 1;
+  }
+  
+  .todo select {
+    margin-left: 10px;
+  }
+  
+  .todo.completed {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .todo button {
+    background-color: beige;
+    font-size: 12px;
+  }
+  

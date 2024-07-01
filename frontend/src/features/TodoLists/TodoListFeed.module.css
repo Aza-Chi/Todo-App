@@ -1,0 +1,65 @@
+body {
+    /* background-color: yellow; */
+}
+
+.addButton {
+    margin: 5px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+.todoListFeed {
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .todoListFeed h1 {
+    color: white;
+    text-decoration: underline;
+    margin-bottom: 10px;
+  }
+  .todoListFeed h3 {
+    color: white;
+  }
+
+  .todoListFeed h4 {
+    color: white;
+    
+  }
+
+  .todoListFeed p {
+    color: white;
+    
+  }
+  
+  .todoListGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .todoListItem {
+    background-color: #8f8e8e;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .loading-message,
+  .error-message,
+  .empty-feed-message {
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+  }
+  

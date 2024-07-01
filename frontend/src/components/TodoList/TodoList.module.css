@@ -1,0 +1,58 @@
+/* */
+.header {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  position: relative;
+  text-align: center;
+}
+
+.removeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  background-color: #d32f2f;
+}
+
+.addTodo {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.errorMessage {
+  color: red;
+}
+
+
+.todoList {
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px;
+    position: relative;
+    /* background-color: black; */
+  }
+  
+  .todoList input {
+    margin-right: 10px;
+  }
+  
+.header h2 {
+  display: inline-block;
+  margin: 0;
+  text-decoration: underline;
+  text-align: center;
+}
+
+  .todoList p {
+    /* text-decoration: underline; */
+    text-align: center;
+  }
