@@ -26,7 +26,7 @@ export default function AccountPage() {
         <p className={styles.p}>You are logged in as {authData.username}/{authData.email_address}.</p>
         
         <p className={styles.mb3rem}>
-          Change your account information below or <InlineLink path="/todo" anchor="view your todo list(s)" />.
+          View your account information below or <InlineLink path="/todo" anchor="view your todo list(s)" />.
         </p>
         
         {/* <h2>Friends:</h2> */}
