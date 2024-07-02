@@ -7,6 +7,12 @@ body {
   overflow-x: hidden; /*Stop horizontal scroll */
   
 }
+.mw80rem .warning {
+  color: red;
+
+}
+.warning {
+}
 /* If it stops working 
 open public/index.html and set the margin to 0 using inline styles like this:
 
