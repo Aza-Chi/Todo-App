@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Todo.module.css';
 
 function Todo({ todo, authData, onDelete }) {
-  const handleToggleComplete = async () => {
+  const [currentTodo, setCurrentTodo] = useState(todo);
+
+  const handleToggleComplete = async (event) => {
+    const completed = event.target.checked;
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/todos/${todo.todo_id}`, {
-        method: 'PATCH',
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/todos/${currentTodo.todo_id}`, {
+        method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${authData.token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ completed: !todo.completed }),
+        body: JSON.stringify({
+          completed: completed,
+          list_id: currentTodo.list_id,
+        }),
       });
+
       if (response.ok) {
-        // Handle successful update (e.g., refetch todos or update state)
+        const updatedTodo = await fetch(`${process.env.REACT_APP_API_BASE_URL}/todos/${currentTodo.todo_id}`);
+        if (updatedTodo.ok) {
+          const updatedTodoData = await updatedTodo.json();
+          setCurrentTodo(updatedTodoData);
+        }
       } else {
         console.error('Error updating todo');
       }
@@ -24,13 +34,13 @@ function Todo({ todo, authData, onDelete }) {
 
   const handleDelete = async () => {
     try {
-      console.log(`attempting to remove todo id: ${todo.todo_id}`);
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/todos/${todo.todo_id}`, {
+      console.log(`attempting to remove todo id: ${currentTodo.todo_id}`);
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/todos/${currentTodo.todo_id}`, {
         method: 'DELETE',
-        credentials: "include",
+        credentials: 'include',
       });
       if (response.ok) {
-        onDelete(todo.todo_id);
+        onDelete(currentTodo.todo_id);
       } else {
         console.error('Error deleting todo');
       }
@@ -41,13 +51,21 @@ function Todo({ todo, authData, onDelete }) {
 
   return (
     <div className={styles.todo}>
-      <h3>{todo.title}</h3>
-      <p>{todo.description}</p>
-      <button onClick={handleToggleComplete}>
-        {todo.completed ? 'Mark as Incomplete' : 'Mark as Complete'}
-      </button>
-      <button onClick={handleDelete} className={styles.deleteButton}>
-        Remove
+      <div className={styles.checkboxContainer}>
+        <input
+          type="checkbox"
+          checked={currentTodo.completed}
+          onChange={handleToggleComplete}
+          className={styles.checkbox}
+        />
+        <label className={styles.checkboxLabel}></label>
+      </div>
+      <div className={currentTodo.completed ? styles.completed : ''}>
+        <h3>{currentTodo.title}</h3>
+        <p>{currentTodo.description}</p>
+      </div>
+      <button title="Remove Todo" onClick={handleDelete} className={styles.deleteButton}>
+        X
       </button>
     </div>
   );

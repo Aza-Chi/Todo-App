@@ -6,10 +6,16 @@ const addTodo = `
   VALUES ($1, $2, $3, $4, $5, $6, $7) 
   RETURNING *`;
   const updateTodoByTodoId = `
-  UPDATE todos 
-  SET list_id = $1, description = $2, completed = $3, priority = $4, status = $5, deadline = $6, reminder = $7, updated_at = NOW() 
+  UPDATE todos SET list_id = COALESCE($1, list_id), 
+  description = COALESCE($2, description), 
+  completed = COALESCE($3, completed), 
+  priority = COALESCE($4, priority), 
+  status = COALESCE($5, status), 
+  deadline = COALESCE($6, deadline), 
+  reminder = COALESCE($7, reminder), 
+  updated_at = NOW() 
   WHERE todo_id = $8 
-  RETURNING *`;
+  RETURNING *;`
 
 
 const removeTodoByTodoId = "DELETE FROM todos WHERE todo_id = $1";

@@ -71,8 +71,9 @@ const updateTodoByTodoId = (req, res) => {
     const id = parseInt(req.params.id);
     const { list_id, description, completed, priority, status, deadline, reminder } = req.body;
   
-    if (!list_id || !description) {
-      return res.status(400).json({ error: "List ID and description are required" });
+    if (!list_id ) {
+      console.log(`todos/controller.js - List ID required`);
+      return res.status(400).json({ error: "List ID required" });
     }
   
     pool.query(

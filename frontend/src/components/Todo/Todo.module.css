@@ -1,24 +1,79 @@
+.checkbox {
+  margin-right: 10px;
+  cursor: pointer;
+  /* border: 3px solid #ccc; */
+  /* appearance: none; */
+  /* margin-left: 20%; */
+  /* border-radius: 3px; */
+  
+}
+
+.checkboxLabel {
+  margin-right: 20px;
+}
+/* .checkboxLabel {
+  font-size: 16px;
+  cursor: pointer;
+} */
+.checkboxContainer {
+  display: flex;
+  /* align-items: center; */
+}
+
+.checkbox:checked {
+  background-color: #66bb6a; /* Green background color when checked */
+}
+
+.checkbox:focus {
+  outline: none; /* Remove default focus outline */
+}
+
+.todo .deleteButton { 
+  /* right: 0; */
+  background-color: #f44336;
+  color: white;
+  border: none;
+  /* padding: 5px 10px; */
+  cursor: pointer;
+  font-size: 10px;
+  max-height: 1.5em;
+  align-items: center;
+  align-self: center;
+  /* max-width: 1.5em; */
+  
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f;
+}
+
+
+
 .todo {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
-    margin: 5px;
-
+    padding: 0px;
+    margin: 0px;
+    
     border-top: 1px solid #eee;
     /* border-bottom: 1px solid #eee; */
   }
   
+  .todo p {
+    color: black;
+    /* padding-right: 2%; */
+  }
   .todo span {
     flex: 1;
   }
   
   .todo select {
-    margin-left: 10px;
+    /* margin-left: 10px; */
   }
   
-  .todo.completed {
+  .completed {
     text-decoration: line-through;
-    color: #888;
+    color: black;
   }
   
   .todo button {
