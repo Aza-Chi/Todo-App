@@ -73,35 +73,30 @@ const removeTodoListByListId = async (req, res) => {
   }
 };
 
-/* Update list name by list id */
-const updateTodoListName = async (req, res) => {
+/* Update list by list id */
+const updateTodoList = async (req, res) => {
   const listId = parseInt(req.params.id);
-  const { list_name } = req.body;
-  console.log(`updateTodoListName attempted for listId: ${listId}, list_name: ${list_name}`);
+  const { list_name, order_num } = req.body;
+  console.log(`updateTodoList attempted for listId: ${listId}, list_name: ${list_name}, order_num: ${order_num}`);
   
   try {
-    // Execute the query to update the list_name
-    await pool.query(queries.updateToDoListName, [list_name, listId]);
-    console.log("Updated the Todo List name!");
-    return res.status(200).send("Todo List name updated successfully!");
+    await pool.query(queries.updateToDoList, [list_name, order_num, listId]);
+    console.log("Updated the Todo List!");
+    return res.status(200).send("Todo List updated successfully!");
   } catch (error) {
-    console.error("Error updating Todo List name:", error);
-    return res.status(500).send("Error updating Todo List name.");
+    console.error("Error updating Todo List:", error);
+    return res.status(500).send("Error updating Todo List.");
   }
 };
 
 
 
-/* Middleware */
 
-
-
-
-
+/*///// Middleware /////*/
 
 // Middleware to check if the user is the owner of the todo list
 const checkOwner = async (req, res, next) => {
-    const userId = req.user.id; // Assuming user ID is stored in req.user
+    const userId = req.user.id; 
     const listId = req.params.listId;
   console.log(`todolist middleware checkowner - req.user.id: ${userId}, req.params.listId: ${listId}`);
     const list = await pool.query('SELECT owner_id FROM todo_lists WHERE list_id = $1', [listId]);
@@ -114,7 +109,7 @@ const checkOwner = async (req, res, next) => {
   
   // Middleware to check if the user has write permissions on the todo list
   const checkWritePermission = async (req, res, next) => {
-    const userEmail = req.user.email; // Assuming user email is stored in req.user
+    const userEmail = req.user.email; 
     const listId = req.params.listId;
   
     const shared = await pool.query('SELECT permission FROM shared_todos WHERE list_id = $1 AND email = $2', [listId, userEmail]);
@@ -131,7 +126,7 @@ const checkOwner = async (req, res, next) => {
     getTodoListByListId,
     getTodoListByUserId: getTodoListByOwnerId,
     removeTodoListByListId,
-    updateTodoListName,
+    updateTodoList,
     addTodoList,
     checkOwner,
     checkWritePermission,

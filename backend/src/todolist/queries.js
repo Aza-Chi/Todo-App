@@ -7,7 +7,12 @@ const addTodoList =
   "INSERT INTO todo_lists (owner_id, list_name) VALUES ($1, $2)";
 
 const removeTodoListByListId = "DELETE FROM todo_lists WHERE list_id = $1";
-const updateToDoListName = "UPDATE todo_lists SET list_name = $1, updated_at = NOW() WHERE list_id = $2";
+const updateToDoList = `UPDATE todo_lists 
+SET 
+    list_name = COALESCE($1, list_name), 
+    order_num = COALESCE($2, order_num), 
+    updated_at = NOW() 
+WHERE list_id = $3;`;
 
 module.exports = {
   getTodoLists,
@@ -16,5 +21,5 @@ module.exports = {
   getTodoListByUserId,
   addTodoList,
   removeTodoListByListId,
-  updateToDoListName
+  updateToDoList: updateToDoList,
 };
