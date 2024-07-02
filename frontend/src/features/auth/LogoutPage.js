@@ -8,7 +8,7 @@ const LogoutPage = () => {
   useEffect(() => {
     const redirectTimeout = setTimeout(() => {
       navigate('/login'); // Replace with your login page route
-    }, 10000); //10000 = 10 seconds
+    }, 6000); //10000 = 10 seconds
 
     return () => clearTimeout(redirectTimeout);
   }, [navigate]);

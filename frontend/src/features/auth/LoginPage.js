@@ -75,6 +75,11 @@ console.log(`attempting login to ${process.env.REACT_APP_API_BASE_URL}/auth/logi
       <hr className={globalStyles.separator} />
       <GoogleAuthButton />
       <p>{isGoogleError ? googleError : null}</p>
+      <p>You can try the test user login:</p>
+      <p>Email: TestUser@example.com</p>
+      <p>Password: keysersoze</p>
+      <br></br>
+      <p className={globalStyles.warning}>Google Login may not work for now as it may take five minutes to a few hours for Authorised redirect URIs to take effect</p>
     </div>
   );
 }
