@@ -26,8 +26,8 @@ export default function MainNav() {
     } catch (error) {
       console.log(error);
     } finally {
-      navigate('/');  // Redirect to homepage
-      //navigate(0);  // Refresh page to clear auth state and re-render
+      navigate('/logout');  // Redirect to homepage
+      navigate(0);  // Refresh page to clear auth state and re-render
     }
   }
 
@@ -43,18 +43,11 @@ export default function MainNav() {
     <nav className={styles.mainNav}>
       <ul className={styles.navList}>
         {renderNavItem("/", "Home")}
-        {/* Todo Pages! About - Contact - more*/}
-        {/* {renderNavItem("/about", "About")} */}
-
-        {/* For categories I need to add category numbers to my DB so far they're all null!*/}
-        {/* {renderNavItem("/category/tech", "Tech")}
-        {renderNavItem("/category/food", "Food")}
-        {renderNavItem("/category/misc", "Misc")} */}
       </ul>
       
       {authData.logged_in ?
       <ul className={styles.navList}>
-        {renderNavItem("/lists", "ToDo")}
+        {renderNavItem("/todo", "Todo")}
         {renderNavItem("/account", "Account")}
         {renderNavItem("#", "Log Out", handleClickLogOut)}
       </ul>
