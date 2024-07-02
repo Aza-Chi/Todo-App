@@ -8,12 +8,9 @@ import InlineLink from "../../components/InlineLink/InlineLink";
 
 export async function todoListFeedLoader() {
   const authData = await getStatus();
-  console.log(`TodoListFeed statusRes: ${authData}`);
-  console.log(`TodoListFeed statusRes: ${authData.id}`);
   const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/lists/user/${authData.id}`);
   if (!response.ok) {
-    console.log(`TodoListFeed.js - 'Failed to fetch todo lists`)
-    // throw new Error('Failed to fetch todo lists');
+    throw new Error('Failed to fetch todo lists');
   }
   const todoListData = await response.json();
   return { todoListData, authData };
@@ -66,12 +63,18 @@ function TodoListFeed() {
       // Refetch the updated TodoList data
       const { todoListData } = await todoListFeedLoader();
       setTodoListData(todoListData);
+
+      // Navigate to refresh the page
+      navigate(0);
+
     } catch (error) {
       console.error('Error adding todo list:', error);
     }
   };
 
   function renderFeedItems() {
+    // Sort todoListData by order_num
+    const sortedTodoListData = [...todoListData].sort((a, b) => a.order_num - b.order_num);
 
     if (loading) {
       return <p className={styles.loadingMessage}>Loading...</p>;
@@ -81,11 +84,11 @@ function TodoListFeed() {
       return <p className={styles.errorMessage}>Error: {error.message}</p>;
     }
   
-    if (!todoListData || todoListData.length === 0) {
+    if (!sortedTodoListData || sortedTodoListData.length === 0) {
       return <p className={styles.emptyFeedMessage}>Please add a Todo list using the button above.</p>;
     }
   
-    const feedItems = todoListData.map((todoList, index) => (
+    const feedItems = sortedTodoListData.map((todoList, index) => (
       <div className={styles.todoListItem} key={`${todoList.id}-${index}`}>
         <TodoList
           todoList={todoList}
@@ -111,7 +114,6 @@ function TodoListFeed() {
   }
 
   return (
-    
     <div className={styles.todoListFeed}>
       <h1>Todo Lists</h1>
       <button onClick={handleAddTodoList} className={styles.addButton}>Add Todo List</button>
